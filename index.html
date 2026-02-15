@@ -38,6 +38,53 @@
 
   <body>
 
+<!-- Navbar -->
+<nav class="navbar bg-base-100 shadow-md px-6">
+
+
+  <div class="navbar-start">
+    <a class="text-xl lg:text-2xl font-bold text-primary cursor-pointer">
+      SwiftCart
+    </a>
+  </div>
+
+
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 font-medium">
+      <li><a class="hover:text-primary">Home</a></li>
+      <li><a class="hover:text-primary">Products</a></li>
+      <li><a class="hover:text-primary">About</a></li>
+      <li><a class="hover:text-primary">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Right: Cart Icon -->
+  <div class="navbar-end">
+    <button class="btn btn-ghost relative">
+      <i class="fa-solid fa-cart-shopping text-xl"></i>
+
+      <!-- Cart Count -->
+      <span id="cart-count"
+        class="badge badge-sm badge-primary absolute -top-2 -right-2">
+        0
+      </span>
+    </button>
+<div class="dropdown flex lg:hidden pr-4">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+      </div>
+      <ul
+        tabindex="-1"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-auto p-2 shadow">
+        <li><a class="hover:text-primary">Home</a></li>
+      <li><a class="hover:text-primary">Products</a></li>
+      <li><a class="hover:text-primary">About</a></li>
+      <li><a class="hover:text-primary">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+</nav>
 
 <div>
     <h1>This is swiftCart page</h1>
