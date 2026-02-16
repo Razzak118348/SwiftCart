@@ -36,20 +36,20 @@ function displayProducts(products, container) {
 
     products.forEach(product => {
         const productCard = document.createElement("div");
-        productCard.className="card bg-white shadow-md  hover:shadow-xl transition duration-300 rounded-lg p-4 flex flex-col items-center rounded-lg";
+        productCard.className="card bg-white shadow-md  hover:shadow-xl transition duration-300 rounded-lg flex flex-col items-center rounded-lg";
 
         productCard.innerHTML = `
         <figure class ="p-4 bg-white">
-        <img src="${product.image}" alt="${product.title}" class="h-40 object-contain w-auto"/>
+        <img src="${product.image}" alt="${product.title}" class="h-40 object-contain"/>
         </figure>
 
         <div class="card-body">
-        <div class="flex justify-between gap-6">
-        <span class="badge badge-outline text-xs">category: ${product.category}</span>
+        <div class="flex justify-between gap-4">
+        <span class="badge badge-outline text-xs p-4">${product.category}</span>
         <span class="text-sm"><i class="fa-regular fa-star text-yellow-500"></i> ${product.rating.rate} (${product.rating.count})</span>
 </div>
         <h3 class="text-sm font-semibold">
-        ${product.title.length > 40 ? product.title.slice(0, 40) + "..." : product.title}
+        ${product.title.length > 30 ? product.title.slice(0, 30) + "..." : product.title}
         </h3>
         <p class="text-primary font-bold">price: $${product.price}</p>
 
@@ -115,33 +115,33 @@ cateforyBtns.forEach(btn => {
 
 function viewDetails(productId) {
     const product = products.find(p => p.id === productId);
-    if(product){
-const productCard = document.createElement("div");
-        productCard.className="card bg-white shadow-md  hover:shadow-xl transition duration-300 rounded-lg p-4 flex flex-col items-center rounded-lg";
-
-        productCard.innerHTML = `
-        <figure class ="p-4 bg-white">
-        <img src="${product.image}" alt="${product.title}" class="h-40 object-contain w-auto"/>
-        </figure>
-
-        <div class="card-body">
-        <div class="flex justify-between gap-6">
-        <span class="badge badge-outline text-xs">category: ${product.category}</span>
-        <span class="text-sm"><i class="fa-regular fa-star text-yellow-500"></i> ${product.rating.rate} (${product.rating.count})</span>
-</div>
-        <h3 class="text-sm font-semibold">
-        ${product.title}
-        </h3>
-        <p class="text-primary font-bold">price: $${product.price}</p>
-
-        <div class="flex justify-between gap-2">
-        <button class="btn btn-primary btn-sm" onclick="addToCart(${product.id})"><li class="fa-solid fa-cart-shopping text-sm"></li> Add to Cart</button>
-        <button class="btn btn-secondary btn-sm" onclick="viewDetails(${product.id})"><i class="fa-solid fa-eye"></i>View Details</button>
-        </div>
-        </div>
-        `;
-
+    if(!product){
+        return;
     }
+
+    const modal = document.createElement("div");
+    modal.className = "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+    modal.innerHTML = `
+    <div class="bg-white rounded-lg p-6 w-11/12 md:w-1/2 lg:w-1/3">
+    <div class="flex justify-end">
+    <button class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl"
+                onclick="this.closest('.fixed').remove()">
+
+    <i class="fa-solid fa-xmark"></i>
+    </button>
+    </div>
+    <div class="flex flex-col items-center">
+    <img src="${product.image}" alt="${product.title}" class="h-40 object-contain w-auto mb-4"/>
+    <h2 class="text-lg font-semibold mb-2">${product.title}</h2>
+    <p class="text-primary font-bold mb-4">price: $${product.price}</p>
+    <p class="mb-4">${product.description}</p>
+    <button class="btn btn-primary" onclick="addToCart(${product.id})"><li class="fa-solid fa-cart-shopping text-sm"></li> Add to Cart</button>
+    </div>
+    </div>
+    `;
+    document.body.appendChild(modal);
+
+
 }
 
 window.addEventListener("DOMContentLoaded", async () => {

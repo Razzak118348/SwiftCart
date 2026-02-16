@@ -1,0 +1,104 @@
+<html>
+     <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title and logo  -->
+    <title>SwiftCart</title>
+
+
+    <!-- font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- font integration  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- tailwind+daisyui  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- stylesheet  -->
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+<body>
+    <nav class="navbar bg-base-100 shadow-md px-6">
+
+
+  <div class="navbar-start">
+    <a href="index.html" class="text-xl lg:text-2xl font-bold text-primary cursor-pointer">
+      SwiftCart
+    </a>
+  </div>
+
+
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1 font-medium">
+      <li><a href="index.html" class="hover:text-primary">Home</a></li>
+      <li><a href="products.html" class="hover:text-primary">Products</a></li>
+      <li><a href="about.html" class="hover:text-primary">About</a></li>
+      <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Right: Cart Icon -->
+  <div class="navbar-end">
+    <button class="btn btn-ghost relative">
+      <i class="fa-solid fa-cart-shopping text-xl"></i>
+
+      <!-- Cart Count -->
+      <span id="cart-count"
+        class="badge badge-sm badge-primary absolute -top-2 -right-2">
+        0
+      </span>
+    </button>
+<div class="dropdown flex lg:hidden pr-4">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+      </div>
+      <ul
+        tabindex="-1"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-auto p-2 shadow">
+        <li><a href="index.html" class="hover:text-primary">Home</a></li>
+      <li><a href="products.html" class="hover:text-primary">Products</a></li>
+      <li><a href="about.html" class="hover:text-primary">About</a></li>
+      <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+</nav>
+
+
+<section class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto px-6 py-10">
+        <h2 class="text-2xl font-bold mb-6">Contact Us</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">
+            If you have any questions, feedback, or inquiries, please feel free to reach out to us. We value your input and are here to assist you in any way we can. You can contact us via email at
+
+    </div>
+<p>
+    phone at (123) 456-7890, or through our social media channels. We look forward to hearing from you and will do our best to respond promptly. Thank you for choosing SwiftCart!
+
+</p>
+<p>
+    email: raju@gmail.com
+</p>
+
+</section>
+</body>
+</html>
