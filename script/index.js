@@ -1,8 +1,11 @@
 const trendingContainer = document.getElementById("trending-products");
 const productsContainer = document.getElementById("products-container");
 const loader = document.getElementById("loader");
+const cartCount=document.getElementById("cart-count");
+const cartItemContainer=document.getElementById("cart-items");
+const cartTotal=document.getElementById("cart-total");
 
-let cart =[];
+let cart =JSON.parse(localStorage.getItem("cart")) || [];
 let products =[];
 
 function showLoader() {
@@ -98,13 +101,60 @@ catch(error){
 //add to cart
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
-    if(product){
-        cart.push(product);
-      document.getElementById("cart-count").innerText = cart.length;
-      alert(`${product.title} added to cart`);
+    if(!product) return;
+
+    const existingProduct = cart.find(item=>item.id ===productId);
+    if(existingProduct){
+        existingProduct.quantity += 1;
     }
+    else{
+        cart.push({...product, quantity: 1});
+    }
+    updateCartUI();
 }
 
+function updateCartUI() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    cartCount.textContent = totalItems;
+
+    renderCartItems();
+}
+
+function renderCartItems() {
+    cartItemContainer.innerHTML = "";
+    let totalPrice = 0;
+
+    cart.forEach(item => {
+        totalPrice += item.price * item.quantity;
+        const cartItem = document.createElement("div");
+        cartItem.className = "flex justify-between items-center mb-2";
+
+        cartItem.innerHTML = `
+        <div class="flex items-center gap-2">
+        <img src="${item.image}" alt="${item.title}" class="h-10 w-10 object-contain"/>
+        <span>${item.title}</span>
+        </div>
+        <div class="flex items-center gap-2">
+        <span>Qty: ${item.quantity}</span>
+        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+        <button class="btn btn-sm btn-error" onclick="removeFromCart(${item.id})"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        `;
+        cartItemContainer.appendChild(cartItem);
+    });
+    cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
+}
+
+//remove from cart
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+}
+
+
+//button event listener for category filter
 const cateforyBtns=document.querySelectorAll(".category-btn");
 cateforyBtns.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -133,7 +183,12 @@ function viewDetails(productId) {
     <div class="flex flex-col items-center">
     <img src="${product.image}" alt="${product.title}" class="h-40 object-contain w-auto mb-4"/>
     <h2 class="text-lg font-semibold mb-2">${product.title}</h2>
-    <p class="text-primary font-bold mb-4">price: $${product.price}</p>
+<div class="flex justify-between gap-4 mb-2 w-full">
+<span class="badge badge-outline text-xs p-4">${product.category}</span>
+<span class="text-primary font-bold">$${product.price}</span>
+
+<span class="text-sm"><i class="fa-regular fa-star text-yellow-500"></i> ${product.rating.rate} (${product.rating.count})</span>
+</div>
     <p class="mb-4">${product.description}</p>
     <button class="btn btn-primary" onclick="addToCart(${product.id})"><li class="fa-solid fa-cart-shopping text-sm"></li> Add to Cart</button>
     </div>
@@ -152,4 +207,5 @@ window.addEventListener("DOMContentLoaded", async () => {
     fetchProducts();
     loadProductsByCategory("all");
    }
+   updateCartUI();
 });

@@ -59,30 +59,54 @@
   </div>
 
   <!-- Right: Cart Icon -->
-  <div class="navbar-end">
-    <button class="btn btn-ghost relative">
+<div class="navbar-end">
+
+  <div class="dropdown dropdown-end">
+    <div tabindex="0" role="button" class="btn btn-ghost btn-circle relative">
       <i class="fa-solid fa-cart-shopping text-xl"></i>
 
-      <!-- Cart Count -->
-      <span id="cart-count"
-        class="badge badge-sm badge-primary absolute -top-2 -right-2">
-        0
-      </span>
-    </button>
-<div class="dropdown flex lg:hidden pr-4">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+      <span id="cart-count" class="badge badge-sm badge-primary absolute -top-2 -right-2">0</span>
+    </div>
+
+    <div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-50 mt-3 w-80 shadow-md">
+      <div class="card-body">
+        <span class="text-lg font-bold">Cart</span>
+        <div id="cart-items" class="max-h-60 overflow-y-auto">
+        </div>
+
+        <div class="border-t pt-2 mt-2 flex justify-between font-semibold">
+          <span>Total:</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <div class="card-actions mt-3">
+          <button class="btn btn-primary btn-block">Checkout</button>
+        </div>
       </div>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-auto p-2 shadow">
-        <li><a href="index.html" class="hover:text-primary">Home</a></li>
+
+    </div>
+
+  </div>
+
+  <!-- //mobile menu -->
+   <div class="dropdown flex lg:hidden pr-4">
+    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /> <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h7"
+        /> </svg>
+
+    </div>
+<ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-auto p-2 shadow">
+      <li><a href="index.html" class="hover:text-primary">Home</a></li>
       <li><a href="products.html" class="hover:text-primary">Products</a></li>
       <li><a href="about.html" class="hover:text-primary">About</a></li>
       <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
-      </ul>
-    </div>
-  </div>
+
+</ul>
+   </div>
+</div>
 
 </nav>
 
